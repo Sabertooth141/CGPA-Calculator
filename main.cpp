@@ -23,21 +23,59 @@ double convertScore(char grade) {
 int main() {
     vector<int> courseCredit;
     vector<double> courseScore;
-    bool endInput = false;
-    bool notValid;
-    cout << "Please enter the letter grade of your course one class at a time: ";
-    char grade;
-    cin >> grade;
-    while (!isalpha(grade)) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Please enter a letter: ";
+    double totalCredit = 0.0;
+    double totalScore = 0.0;
+    double gpa;
+    bool isEnd = false;
+    while(!isEnd) {
+        cout << "Please enter the letter grade of your course one class at a time:";
+        char grade;
         cin >> grade;
-    }
-    grade = toupper(grade, locale());
-    courseScore.push_back(convertScore(grade));
-    cout << "Please enter the credit hour of that class: ";
+        grade = toupper(grade, locale());
+        while (!isalpha(grade)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter a valid letter:";
+            cin >> grade;
+        }
+        courseScore.push_back(convertScore(grade));
 
+        cout << "Please enter the credit hour of that class:";
+        int creditHr;
+        cin >> creditHr;
+        while (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter a number:";
+            cin >> creditHr;
+        }
+        courseCredit.push_back(creditHr);
+
+        cout << "Have you finished inputting? (Y/N)";
+        char over;
+        cin >> over;
+        over = toupper(over, locale());
+        while (!isalpha(over) || (over != 'N' && over != 'Y')) {
+            cout << (over != 'N') << endl;
+            cout << (over != 'Y') << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter a valid letter:";
+            cin >> grade;
+        }
+
+        if (over == 'Y') {
+            isEnd = true;
+        }
+    }
+    for (unsigned int i = 0; i < courseScore.size(); i++) {
+        totalScore += courseScore[i] * courseCredit[i];
+        totalCredit += courseCredit[i];
+    }
+
+    gpa = totalScore / totalCredit;
+
+    cout << "Your gpa is " << gpa << endl;
 
     return 0;
 }
