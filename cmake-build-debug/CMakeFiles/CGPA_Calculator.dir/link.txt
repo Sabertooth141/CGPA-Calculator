@@ -1,0 +1,3 @@
+C:\Users\saber\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f CMakeFiles\CGPA_Calculator.dir/objects.a
+C:\Users\saber\AppData\Local\Programs\CLion\bin\mingw\bin\ar.exe qc CMakeFiles\CGPA_Calculator.dir/objects.a @CMakeFiles\CGPA_Calculator.dir\objects1.rsp
+C:\Users\saber\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\CGPA_Calculator.dir/objects.a -Wl,--no-whole-archive -o CGPA_Calculator.exe -Wl,--out-implib,libCGPA_Calculator.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\CGPA_Calculator.dir\linkLibs.rsp

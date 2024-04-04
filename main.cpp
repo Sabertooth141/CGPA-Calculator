@@ -31,7 +31,7 @@ int main() {
         cout << "Please enter the letter grade of your course one class at a time:";
         char grade;
         cin >> grade;
-        grade = toupper(grade, locale());
+        grade = static_cast<char>(toupper(static_cast<unsigned char>(grade)));
         while (!isalpha(grade)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -54,14 +54,12 @@ int main() {
         cout << "Have you finished inputting? (Y/N)";
         char over;
         cin >> over;
-        over = toupper(over, locale());
-        while (!isalpha(over) || (over != 'N' && over != 'Y')) {
-            cout << (over != 'N') << endl;
-            cout << (over != 'Y') << endl;
+        over = static_cast<char>(toupper(static_cast<unsigned char>(over)));
+        while (over != 'N' && over != 'Y') {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Please enter a valid letter:";
-            cin >> grade;
+            cin >> over;
         }
 
         if (over == 'Y') {
